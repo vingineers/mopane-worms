@@ -1,0 +1,14 @@
+requests
+matplotlib
+numpy
+rasterio
+pandas
+oauthlib
+requests_oauthlib
+openeo
+dotenv
+scikit-image
+scikit-learn
+openpyxl
+geopandas
+shapely
