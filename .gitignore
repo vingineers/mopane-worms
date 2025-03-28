@@ -2,3 +2,6 @@
 .env
 *.pyc
 /output
+Gonimbrasia_Outbreaks_7NovZN.xlsx
+*.gpkg
+*.csv

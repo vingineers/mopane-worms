@@ -266,17 +266,23 @@ def process_raster_for_points(filename, points_gdf):
 for index, row in gdf_final.iterrows():
     filename = row['filename']
     points_gdf = gdf_final.iloc[[index]]
-
+    print(f"Processing file: {filename} for point index: {index}")
     try:
         # Process the raster for the current point
         clipped_raster = process_raster_for_points(filename, points_gdf)
 
+        # Calculate the mean NDVI value, ignoring nodata values (assumed to be 0)
+        mean_ndvi = clipped_raster[clipped_raster != 0].mean()
+        gdf_final.at[index, 'mean_ndvi'] = mean_ndvi
+
         # Plot the clipped raster
-        fig, ax = plt.subplots(1, 1)
-        show(clipped_raster, ax=ax, title=f"Clipped Raster Data for Point {index}")
-        plt.show()
     except Exception as e:
         print(f"Error processing file {filename} for point {index}: {e}")   
+
+
+fig, ax = plt.subplots(1, 1)
+show(clipped_raster, ax=ax, title=f"Clipped Raster Data for Point {index}")
+plt.show()
 
 
 
